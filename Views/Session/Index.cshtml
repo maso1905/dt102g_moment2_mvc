@@ -1,0 +1,44 @@
+﻿@model IEnumerable<moment2_mvc.Models.CourseModel>
+@{
+    ViewData["Title"] = "Session Page";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    This page's courses is brought to you by a session varible page.
+</p>
+
+<div class="container">
+    <!--/table session courses-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Id)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Code)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Url)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Progression)</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <!--Iteration thorugh CourseModel objects-->
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => course.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => @course.Code)</td>
+                    <td>@Html.DisplayFor(modelItem => course.Name)</td>
+                    <td><a href="@Html.DisplayFor(modelItem => @course.Url)">Link</a></td>
+                    <td>@Html.DisplayFor(modelItem => @course.Progression)</td>
+                    <td>@Html.ActionLink("X", "Delete", new { id = course.Id })</td>
+                </tr>
+            }
+            <!--/forach end-->
+        </tbody>
+    </table>
+    <!--/table end-->
+
+</div>

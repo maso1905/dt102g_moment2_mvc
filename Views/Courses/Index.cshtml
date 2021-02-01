@@ -1,0 +1,47 @@
+﻿@model moment2_mvc.Models.MergeCourseClasses
+
+@{
+    ViewData["Title"] = "Courses Page";
+}
+
+<h2>View courses page</h2>
+
+<div class="container">
+    <!--table courses-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.CourseDetails.Id)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CourseDetails.Code)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CourseDetails.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CourseDetails.Url)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CourseDetails.Progression)</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <!--Iterating through courseList from CourseModel class MergeCourseClasses-->
+            @{
+                foreach (var course in Model.CourseDetailList)
+                {
+                    <tr>
+                        <td>@course.Id</td>
+                        <td>@course.Code</td>
+                        <td>@course.Name</td>
+                        <td><a href="@course.Url">Link</a></td>
+                        <td>@course.Progression</td>
+                        <td>@Html.ActionLink("X", "Delete", new { id = course.Id })</td>
+                    </tr>
+                }
+                <!--/foreach end-->
+            }
+        </tbody>
+    </table>
+    <!--/table end-->
+
+    <!--Form partial view-->
+    <partial name="AddCourseForm.cshtml" />
+    <!--/Form partial view end-->
+
+</div>
